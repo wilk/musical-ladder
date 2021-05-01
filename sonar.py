@@ -1,7 +1,8 @@
 #Libraries
 import RPi.GPIO as GPIO
 import time
-from playsound import playsound
+from pydub import AudioSegment
+from pydub.playback import play
  
 #GPIO Mode (BOARD / BCM)
 GPIO.setmode(GPIO.BCM)
@@ -47,7 +48,10 @@ if __name__ == '__main__':
             dist = distance()
             print ("Measured Distance = %.1f cm" % dist)
             if dist > 50 and dist < 100:
-              playsound("./media/A4-440.0.mp3")
+              music = AudioSegment.from_mp3("./media/A4-440.0.mp3")
+              print("Playing mp3 file...")
+              # play the file
+              play(music)
             time.sleep(3)
  
         # Reset by pressing CTRL + C
