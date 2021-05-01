@@ -49,9 +49,9 @@ if __name__ == '__main__':
             dist = distance()
             print(dist)
             print ("Measured Distance = %.1f cm" % dist)
-            if (dist > 50 and dist < 100):
+            if dist > 50 and dist < 100:
               mixer.music.play()
-            time.sleep(0.5)
+            time.sleep(3)
  
         # Reset by pressing CTRL + C
     except KeyboardInterrupt:
