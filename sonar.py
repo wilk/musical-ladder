@@ -1,6 +1,7 @@
 #Libraries
 import RPi.GPIO as GPIO
 import time
+from pygame import mixer  # Load the popular external library
  
 #GPIO Mode (BOARD / BCM)
 GPIO.setmode(GPIO.BCM)
@@ -42,10 +43,15 @@ def distance():
  
 if __name__ == '__main__':
     try:
+        mixer.init()
+        mixer.music.load('./media/A4-440.0.mp3')
         while True:
             dist = distance()
+            print(dist)
             print ("Measured Distance = %.1f cm" % dist)
-            time.sleep(1)
+            if (dist > 50 and dist < 100):
+              mixer.music.play()
+            time.sleep(0.5)
  
         # Reset by pressing CTRL + C
     except KeyboardInterrupt:
